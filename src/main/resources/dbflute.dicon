@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+    "http://www.seasar.org/dtd/components21.dtd">
+
+<components namespace="dbflute">
+    <include path="j2ee.dicon"/>
+
+    <!-- The components of DBFlute Runtime. -->
+    <component name="introduction" class="net.marevol.redmine.impasse.db.allcommon.DBFluteInitializer"/>
+    <component name="invokerAssistant" class="net.marevol.redmine.impasse.db.allcommon.ImplementedInvokerAssistant"/>
+    <component name="commonColumnAutoSetupper" class="net.marevol.redmine.impasse.db.allcommon.ImplementedCommonColumnAutoSetupper"/>
+    <component name="behaviorSelector" class="net.marevol.redmine.impasse.db.allcommon.ImplementedBehaviorSelector"/>
+    <component name="behaviorCommandInvoker" class="org.seasar.dbflute.bhv.core.BehaviorCommandInvoker"/>
+
+    <!-- The components of Behavior. -->
+    <component name="impasseExecutionBugsBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseExecutionBugsBhv"/>
+    <component name="impasseExecutionHistoriesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseExecutionHistoriesBhv"/>
+    <component name="impasseExecutionsBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseExecutionsBhv"/>
+    <component name="impasseKeywordsBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseKeywordsBhv"/>
+    <component name="impasseNodeKeywordsBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseNodeKeywordsBhv"/>
+    <component name="impasseNodeTypesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseNodeTypesBhv"/>
+    <component name="impasseNodesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseNodesBhv"/>
+    <component name="impasseRequirementCasesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseRequirementCasesBhv"/>
+    <component name="impasseRequirementIssuesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseRequirementIssuesBhv"/>
+    <component name="impasseSettingsBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseSettingsBhv"/>
+    <component name="impasseTestCasesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestCasesBhv"/>
+    <component name="impasseTestPlanCasesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestPlanCasesBhv"/>
+    <component name="impasseTestPlansBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestPlansBhv"/>
+    <component name="impasseTestStepsBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestStepsBhv"/>
+    <component name="impasseTestSuitesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestSuitesBhv"/>
+</components>

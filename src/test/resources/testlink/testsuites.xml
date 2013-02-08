@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="" >
+<node_order><![CDATA[]]></node_order>
+<details><![CDATA[]]> 
+</details><testsuite name="基本機能" >
+<node_order><![CDATA[0]]></node_order>
+<details><![CDATA[<p>製品の基本機能についてのテスト仕様</p>]]> 
+</details><testsuite name="画面１" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[<p>&nbsp;画面１のテスト項目</p>]]> 
+</details></testsuite><testsuite name="画面２" >
+<node_order><![CDATA[2]]></node_order>
+<details><![CDATA[<p>画面２のテスト項目&nbsp;</p>]]> 
+</details><testsuite name="画面２ー１" >
+<node_order><![CDATA[3]]></node_order>
+<details><![CDATA[<p>画面２ー１のテスト項目&nbsp;</p>]]> 
+</details>
+<testcase internalid="24" name="機能１">
+	<node_order><![CDATA[100]]></node_order>
+	<externalid><![CDATA[1]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>&nbsp;機能１の確認</p>]]></summary>
+	<preconditions><![CDATA[<p>&nbsp;なし</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>&nbsp;http://www.chazine.com/ へアクセスする。</p>]]></actions>
+	<expectedresults><![CDATA[<p>&nbsp;画面ページが表示される。</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>&nbsp;リンクをクリックする。</p>]]></actions>
+	<expectedresults><![CDATA[<p>&nbsp;メッセージが表示される。</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="画面２ー２" >
+<node_order><![CDATA[4]]></node_order>
+<details><![CDATA[<p>&nbsp;画面２ー２のテスト項目</p>]]> 
+</details><testsuite name="画面２ー２ー１" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[<p>&nbsp;画面２ー２ー１のテスト項目</p>]]> 
+</details>
+<testcase internalid="30" name="機能２">
+	<node_order><![CDATA[100]]></node_order>
+	<externalid><![CDATA[2]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>&nbsp;機能２の確認</p>]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>&nbsp;メニューをクリックする。</p>]]></actions>
+	<expectedresults><![CDATA[<p>&nbsp;設定ページが表示される。</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+<keywords><keyword name="補足"><notes><![CDATA[
+確認項目です
+]]></notes></keyword>
+</keywords></testcase>
+
+</testsuite></testsuite></testsuite></testsuite><testsuite name="拡張機能" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[確認する]]> 
+<keywords><keyword name="確認事項"><notes><![CDATA[
+確認が必要な箇所です
+]]></notes></keyword>
+</keywords>
+</details></testsuite></testsuite>
