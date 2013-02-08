@@ -1,3 +1,5 @@
 target/
+mydbflute/
+bin/
 .project
 .classpath
