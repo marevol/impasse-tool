@@ -140,7 +140,7 @@ public class ImpasseRequirementIssuesCIQ extends
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xinCB() {
         return ImpasseRequirementIssuesCB.class.getName();
     }

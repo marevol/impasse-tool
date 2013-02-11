@@ -5,8 +5,20 @@
 	<include path="aop.dicon"/>
 	<include path="dbflute.dicon"/>
     
+    <!-- Import from TestLink -->
     <component name="testLinkImporter" class="net.marevol.redmine.impasse.testlink.TestLinkImporter">
 		<aspect>j2ee.requiredTx</aspect>
+    </component>
+    
+    <!-- Reporter -->
+    <component name="reporterFactory" class="net.marevol.redmine.impasse.report.ReporterFactory">
+    	<initMethod name="add">
+    		<arg>"html"</arg>
+    		<arg>
+    			<component class="net.marevol.redmine.impasse.report.HtmlReporter">
+    			</component>
+    		</arg>
+    	</initMethod>
     </component>
     
 </components>

@@ -142,7 +142,7 @@ public class ImpasseSettingsCIQ extends AbstractBsImpasseSettingsCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xinCB() {
         return ImpasseSettingsCB.class.getName();
     }

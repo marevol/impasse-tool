@@ -62,6 +62,8 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
                 "net.marevol.redmine.impasse.db.bsentity.dbmeta.ImpasseTestStepsDbm");
         tmpMap.put("impasse_test_suites",
                 "net.marevol.redmine.impasse.db.bsentity.dbmeta.ImpasseTestSuitesDbm");
+        tmpMap.put("users",
+                "net.marevol.redmine.impasse.db.bsentity.dbmeta.UsersDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
     }
 

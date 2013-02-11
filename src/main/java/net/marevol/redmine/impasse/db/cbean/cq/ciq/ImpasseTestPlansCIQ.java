@@ -147,7 +147,7 @@ public class ImpasseTestPlansCIQ extends AbstractBsImpasseTestPlansCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xinCB() {
         return ImpasseTestPlansCB.class.getName();
     }

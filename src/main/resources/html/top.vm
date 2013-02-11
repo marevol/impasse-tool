@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="${reporter.outputEncoding}" />
+<title>Test Specification#if(${reporter.includeResult})/Results#end</title>
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+  article, aside, dialog, figure, footer, header,
+  hgroup, menu, nav, section { display: block; }
+</style>
+</head>
+<body>
+$date.format('yyyy-MM-dd HH:mm:ss.SSS',$today)
+Test Specification#if(${reporter.includeResult})/Results#end
+${reporter.testProject.name}
+${reporter.testPlan.name}
+

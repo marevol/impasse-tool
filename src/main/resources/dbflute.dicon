@@ -28,4 +28,5 @@
     <component name="impasseTestPlansBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestPlansBhv"/>
     <component name="impasseTestStepsBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestStepsBhv"/>
     <component name="impasseTestSuitesBhv" class="net.marevol.redmine.impasse.db.exbhv.ImpasseTestSuitesBhv"/>
+    <component name="usersBhv" class="net.marevol.redmine.impasse.db.exbhv.UsersBhv"/>
 </components>

@@ -170,7 +170,7 @@ public class ImpasseExecutionHistoriesCIQ extends
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xinCB() {
         return ImpasseExecutionHistoriesCB.class.getName();
     }

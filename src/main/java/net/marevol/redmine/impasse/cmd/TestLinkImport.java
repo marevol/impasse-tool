@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 /**
  * A command to import test data from TestLink.
  * <p>
- * java net.marevol.redmine.impasse.cmd.TestLinkImport &lt;Redmine Project ID&gt; &lt;TestLink XML File&gt;
+ * java net.marevol.redmine.impasse.cmd.TestLinkImport &lt;Redmine Project Name&gt; &lt;TestLink XML File&gt;
  * </p>
  * 
  * @author shinsuke

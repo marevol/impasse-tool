@@ -656,7 +656,7 @@ public abstract class AbstractBsImpasseRequirementCasesCQ extends
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xabCB() {
         return ImpasseRequirementCasesCB.class.getName();
     }

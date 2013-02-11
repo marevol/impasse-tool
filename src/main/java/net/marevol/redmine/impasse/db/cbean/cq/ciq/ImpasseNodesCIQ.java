@@ -152,7 +152,7 @@ public class ImpasseNodesCIQ extends AbstractBsImpasseNodesCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xinCB() {
         return ImpasseNodesCB.class.getName();
     }

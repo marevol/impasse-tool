@@ -321,7 +321,7 @@ public class BsImpasseNodeTypesCQ extends AbstractBsImpasseNodeTypesCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() {
         return ImpasseNodeTypesCB.class.getName();
     }

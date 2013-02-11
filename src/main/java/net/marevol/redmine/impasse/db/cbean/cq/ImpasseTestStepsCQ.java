@@ -23,7 +23,7 @@ public class ImpasseTestStepsCQ extends BsImpasseTestStepsCQ {
      * Constructor.
      * @param referrerQuery The instance of referrer query. (NullAllowed: If null, this is base query)
      * @param sqlClause The instance of SQL clause. (NotNull)
-     * @param aliasName The alias name for this query. (NotNull)
+     * @param aliasName The alias projectName for this query. (NotNull)
      * @param nestLevel The nest level of this query. (If zero, this is base query)
      */
     public ImpasseTestStepsCQ(final ConditionQuery referrerQuery,

@@ -553,7 +553,7 @@ public class BsImpasseRequirementIssuesCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                            Internal
     //                                                                            ========
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String getConditionBeanClassNameInternally() {
         return ImpasseRequirementIssuesCB.class.getName();
     }

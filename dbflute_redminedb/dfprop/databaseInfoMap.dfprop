@@ -68,7 +68,7 @@ map:{
         #  And ReplaceSchema task basically ignores this.
         #
         #; tableTargetList = list:{FOO_TABLE ; prefix:FOO_ ; suffix:_FOO ; contain:_FOO_}
-        ; tableTargetList = list:{prefix:impasse_}
+        ; tableTargetList = list:{prefix:impasse_; users}
 
         # o columnExceptMap: (NotRequired - Default map:{})
         #  If you want to exclude some columns in generating target,

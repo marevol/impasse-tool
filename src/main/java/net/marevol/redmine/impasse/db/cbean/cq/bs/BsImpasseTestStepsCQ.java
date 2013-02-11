@@ -423,7 +423,7 @@ public class BsImpasseTestStepsCQ extends AbstractBsImpasseTestStepsCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() {
         return ImpasseTestStepsCB.class.getName();
     }

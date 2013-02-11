@@ -137,7 +137,7 @@ public class ImpasseExecutionBugsCIQ extends AbstractBsImpasseExecutionBugsCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xinCB() {
         return ImpasseExecutionBugsCB.class.getName();
     }

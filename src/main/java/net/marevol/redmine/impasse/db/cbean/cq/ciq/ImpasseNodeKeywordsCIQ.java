@@ -137,7 +137,7 @@ public class ImpasseNodeKeywordsCIQ extends AbstractBsImpasseNodeKeywordsCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xinCB() {
         return ImpasseNodeKeywordsCB.class.getName();
     }

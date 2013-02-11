@@ -829,7 +829,7 @@ public abstract class AbstractBsImpasseSettingsCQ extends
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xabCB() {
         return ImpasseSettingsCB.class.getName();
     }

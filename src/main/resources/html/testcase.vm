@@ -1,0 +1,61 @@
+#set($id = ${testCase.id})##
+#set($name = ${testNode.name})##
+#set($summary = ${testCase.summary})##
+#set($preconditions = ${testCase.preconditions})##
+#if($execution)##
+#set($result = $execution.status)##
+#else##
+#set($result = "0")##
+#end##
+##
+#if($result == "0" || $result == "1" || $result == "2" || $result == "3")##
+<table class="testCase">
+<caption>Test Case: tc-${id} - ${name}</caption>
+<tbody>
+<tr><th colspan="3" class="summaryTitle">Summary</th></tr>
+<tr><td colspan="3" class="summeryContent">$display.br($summary)</td></tr>
+<tr><th colspan="3" class="preconditionsTitle">Preconditions</th></tr>
+<tr><td colspan="3" class="preconditionsContent">$display.br($preconditions)</td></tr>
+<tr>
+  <th class="stepTitle">Step</th>
+  <th class="actionsTitle">Actions</th>
+  <th class="expectedResultsTitle">Expected Results</th>
+</tr>
+#foreach( $step in $testSteps)##
+<tr>
+  <td class="stepContent">$step.stepNumber</td>
+  <td class="actionsContent">$display.br($step.actions)</td>
+  <td class="expectedResultsContent">$display.br($step.expectedResults)</td>
+</tr>
+#end##
+#if(${reporter.includeResults})##
+<tr><td colspan="3" class="resultsSeparator"></td></tr>
+<tr>
+  <th class="resultTitle">Result</th>
+  <td colspan="2" class="resultContent">
+#if($result == 0)Untested#end##
+#if($result == 1)Pass#end##
+#if($result == 2)Failed#end##
+#if($result == 3)Pending#end##
+  </td>
+</tr>
+<tr>
+  <th class="noteTitle">Notes</th>
+  <td colspan="2" class="noteContent">$display.br(${execution.notes})</td>
+  </td>
+</tr>
+<tr>
+  <th class="planTitle">Test Plan</th>
+  <td colspan="2" class="planContent">${testPlan.name}</td>
+  </td>
+</tr>
+<tr>
+  <th class="executorTitle">Executor</th>
+  <td colspan="2" class="executorContent">${executor.firstname} ${executor.lastname}</td>
+  </td>
+</tr>
+
+#end##
+</tbody>
+</table>
+#end##

@@ -389,7 +389,7 @@ public class BsImpasseTestPlanCasesCQ extends AbstractBsImpasseTestPlanCasesCQ {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() {
         return ImpasseTestPlanCasesCB.class.getName();
     }

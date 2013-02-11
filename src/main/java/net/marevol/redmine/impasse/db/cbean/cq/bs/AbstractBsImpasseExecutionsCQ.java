@@ -1427,7 +1427,7 @@ public abstract class AbstractBsImpasseExecutionsCQ extends
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    // very internal (for suppressing warn about 'Not Use TestLinkImport')
+    // very internal (for suppressing warn about 'Not Use Import')
     protected String xabCB() {
         return ImpasseExecutionsCB.class.getName();
     }
