@@ -5,9 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -43,6 +45,7 @@ import net.marevol.redmine.impasse.db.exentity.ImpasseTestSuites;
 import net.marevol.redmine.impasse.db.exentity.Users;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -181,11 +184,15 @@ public class HtmlReporter implements Reporter {
                 context.put("testPlan", testPlan);
             }
 
+            final List<ContentTitle> contentTitleList = new ArrayList<ContentTitle>();
+            parseTitle(testProject, contentTitleList);
+            context.put("contentTitleList", contentTitleList);
+
             final Template topTemplate = Velocity.getTemplate(topTemplatePath,
                     templateEncoding);
             topTemplate.merge(context, writer);
 
-            parse(context, testProject, writer);
+            parseContent(context, testProject, writer);
 
             final Template bottomTemplate = Velocity.getTemplate(
                     bottomTemplatePath, templateEncoding);
@@ -199,7 +206,71 @@ public class HtmlReporter implements Reporter {
         }
     }
 
-    protected void parse(final VelocityContext baseContext,
+    protected void parseTitle(final ImpasseNodes parentNode,
+            final List<ContentTitle> contentTitleList) {
+        final ImpasseNodesCB cb1 = new ImpasseNodesCB();
+        cb1.query().setParentId_Equal(parentNode.getId());
+        cb1.query().addOrderBy_NodeOrder_Asc();
+        final ListResultBean<ImpasseNodes> nodesList = impasseNodesBhv
+                .selectList(cb1);
+        int number = 0;
+        for (final ImpasseNodes node : nodesList) {
+            if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
+                    .intValue()) {
+                number++;
+
+                // testsuite
+                numberList.addLast(number);
+
+                final ContentTitle contentTitle = new ContentTitle();
+                contentTitle.number = StringUtils.join(numberList, '.');
+                contentTitle.name = node.getName();
+                contentTitle.depth = numberList.size();
+
+                contentTitleList.add(contentTitle);
+
+                parseTitle(node, contentTitleList);
+
+                numberList.removeLast();
+
+            }
+        }
+    }
+
+    public static class ContentTitle {
+        protected String number;
+
+        protected String name;
+
+        protected int depth;
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(final String number) {
+            this.number = number;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(final String name) {
+            this.name = name;
+        }
+
+        public int getDepth() {
+            return depth;
+        }
+
+        public void setDepth(final int depth) {
+            this.depth = depth;
+        }
+
+    }
+
+    protected void parseContent(final VelocityContext baseContext,
             final ImpasseNodes parentNode, final Writer writer) {
         final ImpasseNodesCB cb1 = new ImpasseNodesCB();
         cb1.query().setParentId_Equal(parentNode.getId());
@@ -229,7 +300,7 @@ public class HtmlReporter implements Reporter {
 
                 testsuiteTopTemplate.merge(context, writer);
 
-                parse(baseContext, node, writer);
+                parseContent(baseContext, node, writer);
 
                 testsuiteBottomTemplate.merge(context, writer);
 

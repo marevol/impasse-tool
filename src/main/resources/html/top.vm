@@ -2,18 +2,149 @@
 <html>
 <head>
 <meta charset="${reporter.outputEncoding}" />
-<title>Test Specification#if(${reporter.includeResult})/Results#end</title>
+<title>Test Specification#if(${reporter.includeResults})/Report#end</title>
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<style>
-  article, aside, dialog, figure, footer, header,
-  hgroup, menu, nav, section { display: block; }
+<style type="text/css">
+article, aside, dialog, figure, footer, header,
+hgroup, menu, nav, section { display: block; }
+@media print {
+  @page {
+    size: A4 portrait;
+  }
+  body {
+    background: white;
+    font-size: 12pt;
+    -webkit-print-color-adjust: exact;
+  }
+  #cover, #content {
+    width: auto;
+    margin: 0 5%;
+    padding: 0;
+    border: 0;
+    float: none !important;
+    color: black;
+    background: transparent none;
+  }
+  #cover {
+    page-break-after: always;
+    width:90%;
+  }
+  #cover .date {
+    width:90%;
+    text-align:left;
+  }
+  #cover .title {
+    border-top:1px solid #000000;
+    border-bottom:1px solid #000000;
+    padding:70% 0;
+    font-size:32pt;
+    height:100%;
+    width:100%;
+    text-align:center;
+    vertical-align:middle;
+  }
+  #cover .testProject{
+    float:left;
+  }
+  #cover .testPlan{
+    float:left;
+  }
+  #cover .author {
+    float:right;
+  }
+  h1 {
+    font-size:16pt;
+    page-break-after: avoid;
+  }
+  h2 {
+    font-size:14pt;
+    page-break-after: avoid;
+  }
+  h3, h4, h5, h6 {
+    font-size:12pt;
+    page-break-after: avoid;
+  }
+  table.testCase {
+    page-break-inside:avoid;
+    border-top:1px solid #000000;
+    border-left:1px solid #000000;
+    border-collapse:collapse;
+    border-spacing:0;
+    background-color:#ffffff;
+    empty-cells:show;
+    width:100%;
+    margin-bottom:1cm;
+  }
+  .testCase caption {
+    text-align:left;
+    margin-bottom:0.3em;
+  }
+  .testCase th {
+    border-right:1px solid #000000;
+    border-bottom:1px solid #000000;
+    color:#000000;
+    background-color:#cccccc;
+    padding:0.3em 1em;
+    text-align:center;
+  }
+  .testCase td {
+    border-right:1px solid #000000;
+    border-bottom:1px solid #000000;
+    padding:0.3em 0.6em;
+  }
+  .testCase .stepContent {
+    text-align:center;
+  }
+  .testCase .stepTitle {
+    width:20%;
+  }
+  .testCase .actionsTitle {
+    width:40%;
+  }
+  .testCase .expectedResultsTitle {
+    width:40%;
+  }
+  .tocTitle {
+    font-size: 16pt;
+    font-weight:bold;
+  }
+  ul#toc {
+    margin-top:1cm;
+    list-style:none;
+    padding:0;
+    page-break-after: always;
+  }
+  ul#toc li {
+    display:block;
+    width:90%;
+  }
+  ul#toc li a {
+    color: #000000;
+    text-decoration:none;
+  }
+  ul#toc li a::after {
+    /*content: leader('.') target-counter(attr(href), page);*/
+  }
+}
 </style>
 </head>
 <body>
-$date.format('yyyy-MM-dd HH:mm:ss.SSS',$today)
-Test Specification#if(${reporter.includeResult})/Results#end
-${reporter.testProject.name}
-${reporter.testPlan.name}
+<div id="cover">
+<div class="date">$date.format('yyyy-MM-dd',$today)</div>
+<div class="title">Test Specification#if(${reporter.includeResults})/Report#end</div>
+##<div class="testProject">${reporter.testProject.name}</div>
+#if(${reporter.testPlan.name})##
+<div class="testPlan">${reporter.testPlan.name}</div>
+#end##
+<div class="author">Your Company</div>
+</div>
+<div id="content">
+<div class="tocTitle">Table of Contents</div>
+<ul id="toc">
+#foreach( $contentTitle in $contentTitleList)##
+<li><a href="#${contentTitle.number}">${contentTitle.number} ${contentTitle.name}</a></li>
+#end##
+</ul>
 

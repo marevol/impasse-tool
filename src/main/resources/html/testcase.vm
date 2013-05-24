@@ -5,19 +5,32 @@
 #if($execution)##
 #set($result = $execution.status)##
 #else##
-#set($result = "0")##
+#set($result = 0)##
 #end##
 ##
-#if($result == "0" || $result == "1" || $result == "2" || $result == "3")##
+###if($result == 0 || $result == 1 || $result == 2 || $result == 3)##
+#if($result == 1)##
 <table class="testCase">
-<caption>Test Case: tc-${id} - ${name}</caption>
+<caption>Test Case: TC${id} - ${name}</caption>
 <tbody>
 <tr><th colspan="3" class="summaryTitle">Summary</th></tr>
-<tr><td colspan="3" class="summeryContent">$display.br($summary)</td></tr>
+<tr><td colspan="3" class="summeryContent">##
+#if($summary)##
+$display.br($name)
+#else##
+$display.br($summary)
+#end##
+</td></tr>
 <tr><th colspan="3" class="preconditionsTitle">Preconditions</th></tr>
-<tr><td colspan="3" class="preconditionsContent">$display.br($preconditions)</td></tr>
+<tr><td colspan="3" class="preconditionsContent">##
+#if($preconditions)##
+None
+#else##
+$display.br($preconditions)
+#end##
+</td></tr>
 <tr>
-  <th class="stepTitle">Step</th>
+  <th class="stepTitle">Steps</th>
   <th class="actionsTitle">Actions</th>
   <th class="expectedResultsTitle">Expected Results</th>
 </tr>
@@ -31,7 +44,7 @@
 #if(${reporter.includeResults})##
 <tr><td colspan="3" class="resultsSeparator"></td></tr>
 <tr>
-  <th class="resultTitle">Result</th>
+  <th class="resultTitle">Results</th>
   <td colspan="2" class="resultContent">
 #if($result == 0)Untested#end##
 #if($result == 1)Pass#end##

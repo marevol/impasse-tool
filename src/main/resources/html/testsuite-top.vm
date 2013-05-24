@@ -3,11 +3,13 @@
 #set( $detail = ${testSuite.details} )##
 #set( $number = ${reporter.currentNumber} )##
 ##
-#if($level > 6)
-<p>test suite</p>
-#else
-<h${level}>${number} Test Suite: ${name}</h${level}>
-#end
-#if(!$detail)
+#if($level > 6)##
+<!-- ${level} ${number} ${name} -->
+#else##
+<h${level}>${number} ${name}</h${level}>
+<a name="${number}"></a>
+#end##
+#if($detail)##
 <p>$detail</p>
-#end
+#end##
+
