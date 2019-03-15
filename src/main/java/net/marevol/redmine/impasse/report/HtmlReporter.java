@@ -397,7 +397,19 @@ public class HtmlReporter implements Reporter {
                 }
             } else if (nodeTypeMap.get("testcase").intValue() == node.getNodeTypeId()
                 .intValue()) {
-                return true;
+                final ImpasseTestCasesCB cb2 = new ImpasseTestCasesCB();
+                cb2.query().setId_Equal(node.getId());
+                final ImpasseTestCases testCase = impasseTestCasesBhv
+                    .selectEntity(cb2);
+                final ImpasseTestPlanCasesCB cb4 = new ImpasseTestPlanCasesCB();
+                cb4.query().setTestPlanId_Equal(testPlan.getId());
+                cb4.query().setTestCaseId_Equal(testCase.getId());
+                cb4.query().addOrderBy_NodeOrder_Asc();
+                final ImpasseTestPlanCases testPlanCase = impasseTestPlanCasesBhv
+                    .selectEntity(cb4);
+                if (testPlanCase != null) {
+                    return true;
+                }
             }
         }
         return false;
