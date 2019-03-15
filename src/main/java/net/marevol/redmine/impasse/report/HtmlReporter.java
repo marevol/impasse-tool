@@ -284,6 +284,7 @@ public class HtmlReporter implements Reporter {
             if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
                     .intValue()) {
                 if (skipEmptyTestsuite && !hasTestCaseChild(node)) {
+                    System.out.println("Skip node");
                     continue;
                 }
 
