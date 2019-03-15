@@ -38,6 +38,9 @@ public class Report {
         @Option(name = "-r", aliases = "--include-result", usage = "")
         protected boolean includeResult;
 
+        @Option(name = "-s", aliases = "--skip-empty-testsuite", usage = "")
+        protected boolean skipEmptyTestsuite;
+
         @Option(name = "-o", aliases = "--out", metaVar = "OutputFile", usage = "Output File", required = true)
         protected File outputFile;
     }
@@ -77,7 +80,9 @@ public class Report {
 
             reporter.projectName(options.projectName)
                     .planName(options.planName).outputFile(options.outputFile)
-                    .includeResults(options.includeResult).execute();
+                    .includeResults(options.includeResult)
+                    .skipEmptyTestsuite(options.skipEmptyTestsuite)
+                    .execute();
 
         } catch (final Exception e) {
             throw new ImpasseSystemException(e);

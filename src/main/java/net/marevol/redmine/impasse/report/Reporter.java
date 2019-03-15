@@ -10,6 +10,8 @@ public interface Reporter {
 
     Reporter includeResults(boolean includeResults);
 
+    Reporter skipEmptyTestsuite(boolean skipEmptyTestsite);
+
     Reporter planName(String planName);
 
     void execute();

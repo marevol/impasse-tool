@@ -62,6 +62,8 @@ public class HtmlReporter implements Reporter {
 
     private boolean includeResults;
 
+    private boolean skipEmptyTestsuite;
+
     private String planName;
 
     @Resource
@@ -281,6 +283,10 @@ public class HtmlReporter implements Reporter {
         for (final ImpasseNodes node : nodesList) {
             if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
                     .intValue()) {
+                if (skipEmptyTestsuite && !hasTestCaseChild(node)) {
+                    continue;
+                }
+
                 number++;
 
                 // testsuite
@@ -376,6 +382,26 @@ public class HtmlReporter implements Reporter {
         }
     }
 
+    public boolean hasTestCaseChild(final ImpasseNodes parentNode) {
+        final ImpasseNodesCB cb1 = new ImpasseNodesCB();
+        cb1.query().setParentId_Equal(parentNode.getId());
+        cb1.query().addOrderBy_NodeOrder_Asc();
+        final ListResultBean<ImpasseNodes> nodesList = impasseNodesBhv
+            .selectList(cb1);
+        for (final ImpasseNodes node : nodesList) {
+            if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
+                .intValue()) {
+                if (hasTestCaseChild(node)) {
+                    return true;
+                }
+            } else if (nodeTypeMap.get("testcase").intValue() == node.getNodeTypeId()
+                .intValue()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getCurrentNumber() {
         final StringBuilder buf = new StringBuilder();
         for (final Integer num : numberList) {
@@ -402,6 +428,12 @@ public class HtmlReporter implements Reporter {
     @Override
     public Reporter includeResults(final boolean includeResults) {
         this.includeResults = includeResults;
+        return this;
+    }
+
+    @Override
+    public Reporter skipEmptyTestsuite(boolean skipEmptyTestsite) {
+        this.skipEmptyTestsuite = skipEmptyTestsite;
         return this;
     }
 
