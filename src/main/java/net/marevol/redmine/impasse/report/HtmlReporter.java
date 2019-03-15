@@ -219,6 +219,9 @@ public class HtmlReporter implements Reporter {
         for (final ImpasseNodes node : nodesList) {
             if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
                     .intValue()) {
+                if (skipEmptyTestsuite && !hasTestCaseChild(node)) {
+                    continue;
+                }
                 number++;
 
                 // testsuite
@@ -383,7 +386,7 @@ public class HtmlReporter implements Reporter {
         }
     }
 
-    public boolean hasTestCaseChild(final ImpasseNodes parentNode) {
+    private boolean hasTestCaseChild(final ImpasseNodes parentNode) {
         final ImpasseNodesCB cb1 = new ImpasseNodesCB();
         cb1.query().setParentId_Equal(parentNode.getId());
         cb1.query().addOrderBy_NodeOrder_Asc();
@@ -397,22 +400,26 @@ public class HtmlReporter implements Reporter {
                 }
             } else if (nodeTypeMap.get("testcase").intValue() == node.getNodeTypeId()
                 .intValue()) {
-                final ImpasseTestCasesCB cb2 = new ImpasseTestCasesCB();
-                cb2.query().setId_Equal(node.getId());
-                final ImpasseTestCases testCase = impasseTestCasesBhv
-                    .selectEntity(cb2);
-                final ImpasseTestPlanCasesCB cb4 = new ImpasseTestPlanCasesCB();
-                cb4.query().setTestPlanId_Equal(testPlan.getId());
-                cb4.query().setTestCaseId_Equal(testCase.getId());
-                cb4.query().addOrderBy_NodeOrder_Asc();
-                final ImpasseTestPlanCases testPlanCase = impasseTestPlanCasesBhv
-                    .selectEntity(cb4);
-                if (testPlanCase != null) {
+                if (isTestPlanCase(node)) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    private boolean isTestPlanCase(final ImpasseNodes testCaseNode) {
+        final ImpasseTestCasesCB cb2 = new ImpasseTestCasesCB();
+        cb2.query().setId_Equal(testCaseNode.getId());
+        final ImpasseTestCases testCase = impasseTestCasesBhv
+            .selectEntity(cb2);
+        final ImpasseTestPlanCasesCB cb4 = new ImpasseTestPlanCasesCB();
+        cb4.query().setTestPlanId_Equal(testPlan.getId());
+        cb4.query().setTestCaseId_Equal(testCase.getId());
+        cb4.query().addOrderBy_NodeOrder_Asc();
+        final ImpasseTestPlanCases testPlanCase = impasseTestPlanCasesBhv
+            .selectEntity(cb4);
+        return testPlanCase != null;
     }
 
     public String getCurrentNumber() {
