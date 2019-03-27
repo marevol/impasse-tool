@@ -3,3 +3,4 @@ mydbflute/
 bin/
 .project
 .classpath
+.idea/

@@ -62,6 +62,8 @@ public class HtmlReporter implements Reporter {
 
     private boolean includeResults;
 
+    private boolean skipEmptyTestsuite;
+
     private String planName;
 
     @Resource
@@ -217,6 +219,9 @@ public class HtmlReporter implements Reporter {
         for (final ImpasseNodes node : nodesList) {
             if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
                     .intValue()) {
+                if (skipEmptyTestsuite && !hasTestCaseChild(node)) {
+                    continue;
+                }
                 number++;
 
                 // testsuite
@@ -281,6 +286,10 @@ public class HtmlReporter implements Reporter {
         for (final ImpasseNodes node : nodesList) {
             if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
                     .intValue()) {
+                if (skipEmptyTestsuite && !hasTestCaseChild(node)) {
+                    continue;
+                }
+
                 number++;
 
                 // testsuite
@@ -376,6 +385,42 @@ public class HtmlReporter implements Reporter {
         }
     }
 
+    private boolean hasTestCaseChild(final ImpasseNodes parentNode) {
+        final ImpasseNodesCB cb1 = new ImpasseNodesCB();
+        cb1.query().setParentId_Equal(parentNode.getId());
+        cb1.query().addOrderBy_NodeOrder_Asc();
+        final ListResultBean<ImpasseNodes> nodesList = impasseNodesBhv
+            .selectList(cb1);
+        for (final ImpasseNodes node : nodesList) {
+            if (nodeTypeMap.get("testsuite").intValue() == node.getNodeTypeId()
+                .intValue()) {
+                if (hasTestCaseChild(node)) {
+                    return true;
+                }
+            } else if (nodeTypeMap.get("testcase").intValue() == node.getNodeTypeId()
+                .intValue()) {
+                if (isTestPlanCase(node)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isTestPlanCase(final ImpasseNodes testCaseNode) {
+        final ImpasseTestCasesCB cb2 = new ImpasseTestCasesCB();
+        cb2.query().setId_Equal(testCaseNode.getId());
+        final ImpasseTestCases testCase = impasseTestCasesBhv
+            .selectEntity(cb2);
+        final ImpasseTestPlanCasesCB cb4 = new ImpasseTestPlanCasesCB();
+        cb4.query().setTestPlanId_Equal(testPlan.getId());
+        cb4.query().setTestCaseId_Equal(testCase.getId());
+        cb4.query().addOrderBy_NodeOrder_Asc();
+        final ImpasseTestPlanCases testPlanCase = impasseTestPlanCasesBhv
+            .selectEntity(cb4);
+        return testPlanCase != null;
+    }
+
     public String getCurrentNumber() {
         final StringBuilder buf = new StringBuilder();
         for (final Integer num : numberList) {
@@ -402,6 +447,12 @@ public class HtmlReporter implements Reporter {
     @Override
     public Reporter includeResults(final boolean includeResults) {
         this.includeResults = includeResults;
+        return this;
+    }
+
+    @Override
+    public Reporter skipEmptyTestsuite(boolean skipEmptyTestsite) {
+        this.skipEmptyTestsuite = skipEmptyTestsite;
         return this;
     }
 
